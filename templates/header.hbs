@@ -14,19 +14,21 @@
     </div>
   </div>
   <div class="nav-wrapper">
-    <form class="submitbutton" action="{{page_path 'new_request'}}">
+    <form style="display: block; text-align: center; margin: 20px;" class="submitbutton"
+      action="{{page_path 'new_request'}}">
       <input type="submit" value="Envie uma solicitação">
     </form>
 
-    <form class="requestbutton" action="{{page_path 'my_activities'}}">
+    <form style="display: block; text-align: center; margin: 20px;" class="requestbutton"
+      action="{{page_path 'my_activities'}}">
       <input type="submit" value="Lista de solicitações">
     </form>
-    <span class="icon-menu" tabindex="0" role="button" aria-controls="user-nav" aria-expanded="false"
+    {{!-- <span class="icon-menu" tabindex="0" role="button" aria-controls="user-nav" aria-expanded="false"
       aria-label="{{t 'toggle_navigation'}}"></span>
     <nav class="user-nav" id="user-nav">
       {{link 'community' class='community-link'}}
       {{link 'new_request' class='submit-a-request'}}
-    </nav>
+    </nav> --}}
     {{user_info}}
   </div>
 </header>

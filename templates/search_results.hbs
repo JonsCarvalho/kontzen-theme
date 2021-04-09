@@ -1,0 +1,109 @@
+<section class="section hero hero-small">
+  <header class="hero-inner">
+    <div class="hero-inner-search">
+      {{search submit=false instant=settings.instant_search class="search search-full" placeholder="Search knowledge base..."}}
+    </div>
+  </header>
+</section>
+
+<div class="container">
+
+  <nav class="sub-nav">{{breadcrumbs}}</nav>
+
+  <div class="search-results">
+    <h2 class="search-results-heading">
+      {{#if results_count}}Hiya! {{else}}Oh! {{/if}}
+      {{t 'results' query=query count=results_count}}
+      {{#if results_count}} 🎉{{else}} 🙈{{/if}}
+    </h2>
+
+    {{#if results_count}}
+    <ul class="search-results-list">
+
+      {{!-- Knowledge base aritcles --}}
+      {{#if article_results}}
+      {{#each article_results}}
+      <li class="search-result">
+        <a href="{{url}}" class="search-result-link">{{title}}</a>
+        <div class="search-result-description">{{text}}</div>
+        <ul class="meta-group">
+          <li>
+            <ol class="breadcrumbs search-result-breadcrumbs">
+              {{#each path_steps}}
+              {{#is url '#'}}
+              <li title="{{name}}">{{name}}</li>
+              {{else}}
+              {{!-- blank space around <a> tag is intentional to match {{breadcrumbs}} behavior --}}
+              <li title="{{name}}"> <a href="{{url}}">{{name}}</a> </li>
+              {{/is}}
+              {{/each}}
+            </ol>
+          </li>
+          <li class="meta-data">
+            {{#if edited_at}}Updated {{date edited_at timeago=true}}
+            {{else}}Published {{date created_at timeago=true}}{{/if}}
+          </li>
+          {{#if vote_sum}}
+          <li class="meta-data"><span class="search-result-votes meta-count">{{vote_sum}}</span></li>
+          {{/if}}
+          {{#if comment_count}}
+          <li class="meta-data"><span class="search-result-comments meta-count">{{comment_count}}</span></li>
+          {{/if}}
+        </ul>
+      </li>
+      {{/each}}
+      {{/if}}
+
+      {{!-- Community posts --}}
+      {{#if help_center.community_enabled}}
+      {{#if post_results}}
+      {{#each post_results}}
+      <li class="search-result">
+        <a href="{{url}}" class="search-result-link">{{title}}</a>
+        <div class="search-result-description">{{text}}</div>
+        <ul class="meta-group">
+          <li>
+            <ol class="breadcrumbs search-result-breadcrumbs">
+              {{#each path_steps}}
+              {{#is url '#'}}
+              <li title="{{name}}">{{name}}</li>
+              {{else}}
+              {{!-- blank space around <a> tag is intentional to match {{breadcrumbs}} behavior --}}
+              <li title="{{name}}"> <a href="{{url}}">{{name}}</a> </li>
+              {{/is}}
+              {{/each}}
+            </ol>
+          </li>
+          <li class="meta-data">
+            {{#link 'user_profile' id=author.id}}
+            {{author.name}}
+            {{/link}}
+          </li>
+          <li class="meta-data">
+            {{#if edited_at}}Updated {{date edited_at timeago=true}}
+            {{else}}Posted {{date created_at timeago=true}}{{/if}}
+          </li>
+          {{#if vote_sum}}
+          <li class="meta-data"><span class="search-result-votes meta-count">{{vote_sum}}</span></li>
+          {{/if}}
+          {{#if comment_count}}
+          <li class="meta-data"><span class="search-result-comments meta-count">{{comment_count}}</span></li>
+          {{/if}}
+        </ul>
+      </li>
+      {{/each}}
+      {{/if}}
+      {{/if}}
+    </ul>
+
+    {{else}}
+    <p>
+      Sorry, we looked everywhere. Please try a different search, <a href="/hc/en-us#browse-knowledge-base">browse the
+        knowledge base</a> or <a href="/hc/en-us/requests/new">submit a request</a>.
+    </p>
+    {{/if}}
+
+    {{pagination}}
+
+  </div>
+</div>

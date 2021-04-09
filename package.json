@@ -1,9 +1,9 @@
 {
-  "name": "evoko-zendesk-theme",
-  "version": "2.0.4",
-  "description": "Evoko theme for Zendesk Guide",
-  "homepage": "https://support.evoko.se/hc/en-us",
-  "repository": "github:evoko/zendesk-theme",
+  "name": "kontzen-theme",
+  "version": "1.0.0",
+  "description": "Zendesk theme for Zendesk Guide",
+  "homepage": "https://kontulari.zendesk.com/hc/pt-br",
+  "repository": "github:JonsCarvalho/kontzen-theme",
   "license": "Apache-2.0",
   "scripts": {
     "preview": "zat theme preview",
